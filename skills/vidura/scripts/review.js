@@ -22,8 +22,8 @@ export function reviewFile(filePath) {
     const line = lines[i];
     const lineNum = i + 1;
 
-    // Console.log left in code (skip CLI and wizard files)
-    if (line.match(/console\.(log|debug)\(/) && !filePath.includes('cli/') && !filePath.includes('wizard/')) {
+    // Console.log left in code (skip CLI, wizard, and standalone scripts)
+    if (line.match(/console\.(log|debug)\(/) && !filePath.includes('cli/') && !filePath.includes('wizard/') && !filePath.includes('scripts/')) {
       issues.push({
         file: filePath, line: lineNum, severity: 'warn',
         message: 'console.log in non-CLI code', rule: 'no-debug-logs',
