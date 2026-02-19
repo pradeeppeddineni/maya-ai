@@ -10,7 +10,6 @@
 
 Maya AI gives you a team of AI agents that work together like a real team — not isolated chatbots, but a coordinated squad with a shared task board, staggered heartbeats, and inter-agent communication.
 
-Inspired by [@pbteja1998's Mission Control](https://twitter.com/pbteja1998/status/2017662163540971756) architecture, Maya makes it trivially easy to set up what previously took weeks.
 
 **10 minutes from install → fully operational AI team.**
 
