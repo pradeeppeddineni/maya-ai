@@ -2,7 +2,7 @@
 
 > A CLI toolkit that transforms AI agents into a coordinated team of specialists, each named after figures from Indian mythology.
 
-[![Skills](https://img.shields.io/badge/skills-100-blue)](./skills/)
+[![Skills](https://img.shields.io/badge/skills-116-blue)](./skills/)
 [![Agents](https://img.shields.io/badge/agents-7-green)](./agents/)
 [![License](https://img.shields.io/badge/license-MIT-yellow)](./LICENSE)
 
@@ -30,7 +30,7 @@ The interactive wizard asks about your AI's personality, your preferences, and w
 
 ## Features
 
-### 🪷 59 Skills (Indian Mythology Named)
+### 🪷 75 Skills (Indian Mythology Named)
 
 Every skill is a reusable capability with expert-level procedural knowledge, compatible with the [skills.sh](https://skills.sh) ecosystem.
 
@@ -47,6 +47,10 @@ Every skill is a reusable capability with expert-level procedural knowledge, com
 | **Communication** | Sandesh (📧 email), Tumburu (🎵 X/Twitter), Samvada (💬 replies), Agastya (🌍 translation) |
 | **Learning** | Guru (📚 learning paths), Prajna (🧠 ELI5), Ashwin (🃏 flashcards), Drona (👨‍🏫 tutorials) |
 | **System** | Yantra (⚙️ cron), Manu (💾 backups), Marut (📁 file org), Tantra (🕸️ dependencies) |
+| **AI Tools** | Sangraha (📝 summarizer), Akashvani (🧿 oracle/second opinion), Tulya (⚖️ token tracking), Vichara (🔬 model benchmarks) |
+| **Voice & Media** | Gandharva (🎵 advanced TTS), Dhwani (📞 voice calls), Shabdika (🎤 wake word), Spandana (🎧 Spotify), Chitranga (🎞️ GIF search) |
+| **Integration** | Panchanga (📅 Google Workspace), Sutradhar (🎭 MCP bridge), Disha (🧭 places/maps), Prahara (👁️ file watcher) |
+| **DevOps+** | Niti (📜 agent rules), Netra (📸 camera/RTSP), Drishti (🖥️ tmux monitor) |
 
 ### 🤖 7 Agent Personas
 
