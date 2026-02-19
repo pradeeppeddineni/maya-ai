@@ -43,6 +43,27 @@ const agents = program.command('agents').description('Manage agents');
 agents.command('list').description('List available agents').action(agentsList);
 agents.command('spawn <agent> <task>').description('Spawn an agent with a task').action(agentsSpawn);
 
+// ── Squads / Mission Control ──
+import {
+  squadInit, squadRegister, squadStatus, squadTask,
+  squadStandup, squadWorking, squadList,
+} from './squads.js';
+
+const squad = program.command('squad').description('Mission Control — multi-agent squads');
+squad.command('init').description('Initialize Mission Control').action(squadInit);
+squad.command('list').description('List squad templates').action(squadList);
+squad.command('status').description('Show squad status').action(squadStatus);
+squad.command('register <agent>').description('Register an agent')
+  .option('-l, --level <level>', 'Agent level: intern|specialist|lead', 'specialist')
+  .action(squadRegister);
+squad.command('task <title>').description('Create a task')
+  .option('-a, --assignee <agent>', 'Assign to agent')
+  .option('-p, --priority <level>', 'Priority: high|medium|low', 'medium')
+  .option('-d, --description <desc>', 'Task description')
+  .action(squadTask);
+squad.command('standup').description('Show daily standup').action(squadStandup);
+squad.command('working <agent>').description("Show agent's WORKING.md").action(squadWorking);
+
 // ── Connect ──
 program
   .command('connect <service>')
