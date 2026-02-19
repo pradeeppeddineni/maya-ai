@@ -19,6 +19,7 @@
     "maya"
   ],
   "author": "Pradeep Peddineni",
+  "type": "module",
   "license": "MIT",
   "repository": {
     "type": "git",
