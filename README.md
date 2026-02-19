@@ -2,7 +2,7 @@
 
 > A CLI toolkit that transforms AI agents into a coordinated team of specialists, each named after figures from Indian mythology.
 
-[![Skills](https://img.shields.io/badge/skills-59-blue)](./skills/)
+[![Skills](https://img.shields.io/badge/skills-100-blue)](./skills/)
 [![Agents](https://img.shields.io/badge/agents-7-green)](./agents/)
 [![License](https://img.shields.io/badge/license-MIT-yellow)](./LICENSE)
 
