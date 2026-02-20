@@ -61,6 +61,47 @@ When agents communicate:
 - Shared context (Mission Control tasks) loaded via tool calls, not prompt injection
 - Agent-to-agent messages delivered as user messages, not system prompt changes
 
+## Prefix Order (Critical)
+
+This exact order maximizes shared cache hits across sessions:
+
+```
+1. Static system prompt & Tools    ← globally cached across ALL sessions
+2. SOUL.md / AGENTS.md             ← cached within a project/workspace
+3. Session context (USER.md, etc)  ← cached within a session
+4. Conversation messages            ← grows per turn
+```
+
+Everything above the conversation messages should NEVER change mid-session.
+
+## Anti-Patterns That Break Cache
+
+Things that seem harmless but destroy cache hits:
+
+- ❌ Putting a timestamp in the system prompt (changes every request)
+- ❌ Shuffling tool order non-deterministically
+- ❌ Updating tool parameters (e.g. which agents a spawn tool can call)
+- ❌ Adding/removing tools when entering different "modes"
+- ❌ Switching models mid-session (cache is per-model)
+
+### Correct Alternatives:
+
+- ✅ Send time updates as `<system-reminder>` in the next user message
+- ✅ Keep tool order alphabetical and static
+- ✅ Use tool CALLS for mode transitions, not tool SET changes
+- ✅ Use sub-agents for model switching (parent prepares handoff message)
+- ✅ Defer skill loading via stubs instead of adding/removing tools
+
+## Model Switching
+
+Never switch models mid-session. The math is unintuitive:
+
+> 100k tokens into an Opus conversation. Easy question comes up.
+> Switching to Haiku is MORE EXPENSIVE than keeping Opus,
+> because Haiku has to rebuild the entire cache from scratch.
+
+Instead: spawn a sub-agent on Haiku with a focused handoff message.
+
 ## Cost Optimization
 
 1. Deferred skill loading reduces input tokens by ~80% for skill-heavy sessions
