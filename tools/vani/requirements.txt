@@ -1,0 +1,8 @@
+faster-whisper
+sounddevice
+numpy
+pyperclip
+pyautogui
+pynput
+pillow
+pywin32; platform_system=="Windows"
