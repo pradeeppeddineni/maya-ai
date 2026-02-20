@@ -87,3 +87,33 @@ node_modules/
 - Prevention > detection. Pre-commit hooks beat post-commit scans.
 - Check history, not just current state.
 - False positives are better than false negatives.
+
+## ClawHub/Skills Marketplace Security
+
+Before installing ANY external skill, run this scan:
+
+```bash
+# Scan a skill file before installing
+curl -s "https://raw.githubusercontent.com/owner/repo/main/SKILL.md" > /tmp/skill_check.md
+
+# Red flags
+grep -iE "curl.*\|.*bash|wget.*\|.*sh|nc -e|bash -i|reverse.?shell|base64.*decode.*exec|eval\(|exec\(" /tmp/skill_check.md
+
+# Social engineering patterns (tricking user to run commands)
+grep -iE "please run|to enable.*run|copy.paste|execute this|run this command" /tmp/skill_check.md
+
+# Outbound connections to unknown hosts
+grep -iE "https?://(?!api\.|github\.com|docs\.)" /tmp/skill_check.md
+```
+
+### Rules
+- NEVER install a skill that asks you to run `curl | bash` or similar
+- NEVER trust a skill that says "to enable this feature, run:"
+- Check the GitHub account age of the publisher (< 1 month = red flag)
+- Check star count and commit history for legitimacy
+- When in doubt, read the full SKILL.md before installing
+
+### Known Attack Patterns
+- Crypto trading bots asking to "activate wallet"
+- YouTube summarizers asking to "install dependencies"  
+- Any skill that needs you to run a shell command outside of the agent
